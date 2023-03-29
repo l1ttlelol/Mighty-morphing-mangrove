@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class EventHandler : MonoBehaviour
 {
+    //Variables
     public bool IsCharacterSelecting;
-    // Update is called once per frame
+
+    //References
+    public PlayerMovement Move;
+
     void Update()
     {
 
@@ -53,18 +57,21 @@ public class EventHandler : MonoBehaviour
             if (Input.GetAxis("Horizontal") < 0)
             {
                 print("left");
+                Move.Player_MoveLeft();
             }
 
             //MOVE RIGHT
             if (Input.GetAxis("Horizontal") > 0)
             {
                 print("right");
+                Move.Player_MoveRight();
             }
 
             //JUMP
-            if (Input.GetButton("Jump"))
+            if (Input.GetButton("Jump") && Move.JumpAmount > 0)
             {
                 print("jump");
+                Move.Player_Jump();
             }
 
             //USE ATTACK

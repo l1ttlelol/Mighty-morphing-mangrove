@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 914372829}
   - component: {fileID: 914372828}
   - component: {fileID: 914372832}
+  - component: {fileID: 914372833}
   m_Layer: 0
   m_Name: Character master
   m_TagString: Untagged
@@ -353,6 +354,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a206aa18f7f054f84e7f0914727e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsCharacterSelecting: 0
+  Move: {fileID: 914372833}
+--- !u!114 &914372833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914372827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb246ee580c61f4f9f8472ff27fbe7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Velocity: 7
+  JumpHeight: 10
+  PlayerTransform: {fileID: 914372831}
+  RigidBody: {fileID: 914372829}
 --- !u!1 &1834101947
 GameObject:
   m_ObjectHideFlags: 0
