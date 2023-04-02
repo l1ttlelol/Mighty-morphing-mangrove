@@ -6,12 +6,19 @@ public class EventHandler : MonoBehaviour
 {
     //Variables
     public bool IsCharacterSelecting;
+    public Sprite CharacterIdleSprite;
 
     //References
     public PlayerMovement Move;
+    public CharacterData[] CharacterData;
+    public int CharacterIndex = 1;
+    public SpriteRenderer CharacterSprite;
 
     void Update()
     {
+        GetData();
+
+        CharacterSprite.sprite = CharacterIdleSprite; //PLACEHOLDER
 
         //CHARACTER SELECTION MENU
         if (Input.GetButton("Character Select") && Input.GetButton("Character Select Up"))
@@ -19,24 +26,28 @@ public class EventHandler : MonoBehaviour
             //UP
             print("Character Select Up");
             IsCharacterSelecting = true;
+            CharacterIndex = 0;
         }
         else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Right"))
         {
             //RIGHT
             print("Character Select Right");
             IsCharacterSelecting = true;
+            CharacterIndex = 1;
         }
         else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Down"))
         {
             //DOWN
             print("Character Select Down");
             IsCharacterSelecting = true;
+            CharacterIndex = 2;
         }
         else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Left"))
         {
             //LEFT
             print("Character Select Left");
             IsCharacterSelecting = true;
+            CharacterIndex = 3;
         }
         else if(Input.GetButton("Character Select"))
         {
@@ -86,5 +97,11 @@ public class EventHandler : MonoBehaviour
                 print("ability");
             }
         }
+    }
+    
+    //Gets the references to the character data
+    void GetData()
+    {
+        CharacterIdleSprite = CharacterData[CharacterIndex].IdleSprite;
     }
 }
