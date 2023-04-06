@@ -10,36 +10,67 @@ public class PlayerMovement : MonoBehaviour
     public int JumpAmount;
     public int MaxJumpAmount;
     public int Direction = 0;
+    public bool IsGrounded = false;
+    public float Friction = 0.95f;
 
     //References
     public Transform PlayerTransform;
     public Rigidbody2D RigidBody;
-    public BoxCollider2D Collider;
+    public BoxCollider2D GroundCollider;
     public Transform Sprite;
+    public GameObject Self;
 
+    //HANDLES THE PLAYERS LEFT MOVEMENT
     public void Player_MoveLeft()
     {
-        PlayerTransform.Translate(Vector3.left * Velocity * Time.deltaTime);
+        if (IsGrounded == true)
+        {
+            PlayerTransform.Translate(Vector3.left * Velocity * Time.deltaTime * Friction);
+        }
+        else
+        {
+            PlayerTransform.Translate(Vector3.left * Velocity * Time.deltaTime);
+        }
         Sprite.eulerAngles = new Vector3(0, 180, 0);
     }
     
+    //HANDLES THE PLAYERS RIGHT MOVEMENT
     public void Player_MoveRight()
     {
-        PlayerTransform.Translate(Vector3.right * Velocity * Time.deltaTime);
+        if (IsGrounded == true)
+        {
+            PlayerTransform.Translate(Vector3.right * Velocity * Time.deltaTime * Friction);
+        }
+        else
+        {
+            PlayerTransform.Translate(Vector3.right * Velocity * Time.deltaTime);
+        }
         Sprite.eulerAngles = new Vector3(0, 0, 0);
     }
 
+    //HANDLES THE PLAYERS JUMP
     public void Player_Jump()
     {
         RigidBody.AddForce(transform.up * JumpHeight);
         JumpAmount -= 1;
     }
 
+    //HANDLES LANDING
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Floor")
+        if(collision.gameObject.tag == "Floor" && Self.tag == "ground collider")
         {
             JumpAmount = MaxJumpAmount;
+            IsGrounded = true;
+        }
+    }
+    
+    //HANDLES LEAVING THE GROUND
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Floor" && Self.tag == "ground collider")
+        {
+            IsGrounded = false;
         }
     }
 }

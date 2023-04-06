@@ -7,6 +7,7 @@ public class EventHandler : MonoBehaviour
     //Variables
     public bool IsCharacterSelecting;
     public Sprite CharacterIdleSprite;
+    public float JumpTimer;
 
     //References
     public PlayerMovement Move;
@@ -14,45 +15,51 @@ public class EventHandler : MonoBehaviour
     public int CharacterIndex = 1;
     public SpriteRenderer CharacterSprite;
 
-    void Update()
+    void FixedUpdate()
     {
         GetData();
 
         CharacterSprite.sprite = CharacterIdleSprite; //PLACEHOLDER
 
+        JumpTimer -= Time.deltaTime;
+        if(JumpTimer < 0)
+        {
+            JumpTimer = 0;
+        }
+
         //CHARACTER SELECTION MENU
         if (Input.GetButton("Character Select") && Input.GetButton("Character Select Up"))
         {
             //UP
-            print("Character Select Up");
+            //print("Character Select Up");
             IsCharacterSelecting = true;
             CharacterIndex = 0;
         }
         else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Right"))
         {
             //RIGHT
-            print("Character Select Right");
+            //print("Character Select Right");
             IsCharacterSelecting = true;
             CharacterIndex = 1;
         }
         else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Down"))
         {
             //DOWN
-            print("Character Select Down");
+            //print("Character Select Down");
             IsCharacterSelecting = true;
             CharacterIndex = 2;
         }
         else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Left"))
         {
             //LEFT
-            print("Character Select Left");
+            //print("Character Select Left");
             IsCharacterSelecting = true;
             CharacterIndex = 3;
         }
         else if(Input.GetButton("Character Select"))
         {
             //NONE
-            print("Character Select Menu");
+            //print("Character Select Menu");
             IsCharacterSelecting = true;
         }
         else
@@ -67,34 +74,35 @@ public class EventHandler : MonoBehaviour
             //MOVE LEFT
             if (Input.GetAxis("Horizontal") < 0)
             {
-                print("left");
+                //print("left");
                 Move.Player_MoveLeft();
             }
 
             //MOVE RIGHT
             if (Input.GetAxis("Horizontal") > 0)
             {
-                print("right");
+                //print("right");
                 Move.Player_MoveRight();
             }
 
             //JUMP
-            if (Input.GetButton("Jump") && Move.JumpAmount > 0)
+            if (Input.GetButton("Jump") && Move.JumpAmount > 0 && JumpTimer == 0)
             {
-                print("jump");
+                //print("jump");
                 Move.Player_Jump();
+                JumpTimer = 0.5f;
             }
 
             //USE ATTACK
             if (Input.GetButton("Attack"))
             {
-                print("attack");
+                //print("attack");
             }
 
             //USE CHARACTER ABILITY
             if (Input.GetButton("Ability"))
             {
-                print("ability");
+                //print("ability");
             }
         }
     }
