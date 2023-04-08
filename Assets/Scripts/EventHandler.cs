@@ -8,12 +8,15 @@ public class EventHandler : MonoBehaviour
     public bool IsCharacterSelecting;
     public Sprite CharacterIdleSprite;
     public float JumpTimer;
+    public int CharacterIndex = 1;
+    public CharacterData[] CharacterData;
 
     //References
     public PlayerMovement Move;
-    public CharacterData[] CharacterData;
-    public int CharacterIndex = 1;
     public SpriteRenderer CharacterSprite;
+    public PlayerAbilityDash Dash;
+    public PlayerAbilityGrab Grab;
+    public PlayerAbilityHeavyAttack HeavyAttack;
 
     void FixedUpdate()
     {
@@ -103,6 +106,20 @@ public class EventHandler : MonoBehaviour
             if (Input.GetButton("Ability"))
             {
                 //print("ability");
+                if (CharacterIndex == 1)
+                {
+                    Dash.PlayerAbility_Dash();
+                }else if (CharacterIndex == 2)
+                {
+                    HeavyAttack.PlayerAbility_HeavyAttack();
+                }else if (CharacterIndex == 3)
+                {
+                    Grab.PlayerAbility_Grab();
+                }
+                else
+                {
+                    //print("No ability");
+                }
             }
         }
     }
@@ -111,5 +128,10 @@ public class EventHandler : MonoBehaviour
     void GetData()
     {
         CharacterIdleSprite = CharacterData[CharacterIndex].IdleSprite;
+        Move.MaxJumpAmount = CharacterData[CharacterIndex].MaxJumps;
+        if(Move.IsGrounded == true)
+        {
+            Move.JumpAmount = Move.MaxJumpAmount;
+        }
     }
 }

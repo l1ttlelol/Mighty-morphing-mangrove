@@ -7,4 +7,5 @@ public class CharacterData : ScriptableObject
 {
     //Contains data that is character specific
     public Sprite IdleSprite;
+    public int MaxJumps;
 }
