@@ -8,6 +8,8 @@ public class EventHandler : MonoBehaviour
     public bool IsCharacterSelecting;
     public Sprite CharacterIdleSprite;
     public float JumpTimer;
+    public float AttackActiveTimer;
+    public float AttackCooldownTimer;
     public int CharacterIndex = 1;
     public CharacterData[] CharacterData;
 
@@ -17,17 +19,35 @@ public class EventHandler : MonoBehaviour
     public PlayerAbilityDash Dash;
     public PlayerAbilityGrab Grab;
     public PlayerAbilityHeavyAttack HeavyAttack;
+    public GameObject PlayerAttack;
 
     void FixedUpdate()
     {
+        //sets the data for the active character
         GetData();
 
         CharacterSprite.sprite = CharacterIdleSprite; //PLACEHOLDER
 
+        //Counting down the Jump timer
         JumpTimer -= Time.deltaTime;
         if(JumpTimer < 0)
         {
             JumpTimer = 0;
+        }
+
+        //Counting down how long an attack has been out for
+        AttackActiveTimer -= Time.deltaTime;
+        if (AttackActiveTimer < 0)
+        {
+            AttackActiveTimer = 0;
+            PlayerAttack.SetActive(false);
+        }
+
+        //Counting down until the next attack
+        AttackCooldownTimer -= Time.deltaTime;
+        if (AttackCooldownTimer < 0)
+        {
+            AttackCooldownTimer = 0;
         }
 
         //CHARACTER SELECTION MENU
@@ -91,15 +111,23 @@ public class EventHandler : MonoBehaviour
             //JUMP
             if (Input.GetButton("Jump") && Move.JumpAmount > 0 && JumpTimer == 0)
             {
-                //print("jump");
                 Move.Player_Jump();
-                JumpTimer = 0.5f;
+                if(CharacterIndex == 0)
+                {
+                    JumpTimer = 0.4f;
+                }
+                else
+                {
+                    JumpTimer = 1f;
+                }
             }
 
             //USE ATTACK
-            if (Input.GetButton("Attack"))
+            if (Input.GetButton("Attack") && AttackCooldownTimer == 0)
             {
-                //print("attack");
+                PlayerAttack.SetActive(true);
+                AttackActiveTimer = 0.4f;
+                AttackCooldownTimer = 0.8f;
             }
 
             //USE CHARACTER ABILITY

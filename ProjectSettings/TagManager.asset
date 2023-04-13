@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Floor
   - ground collider
+  - Interactable
+  - Player Attack
   layers:
   - Default
   - TransparentFX

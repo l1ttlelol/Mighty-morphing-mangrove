@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D GroundCollider;
     public Transform Sprite;
     public GameObject Self;
+    public Transform AttackRotationCounterweight;
 
     //HANDLES THE PLAYERS LEFT MOVEMENT
     public void Player_MoveLeft()
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerTransform.Translate(Vector3.left * Velocity * Time.deltaTime);
         }
         Sprite.eulerAngles = new Vector3(0, 180, 0);
+        AttackRotationCounterweight.eulerAngles = new Vector3(0, 180, 0);
     }
     
     //HANDLES THE PLAYERS RIGHT MOVEMENT
@@ -46,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerTransform.Translate(Vector3.right * Velocity * Time.deltaTime);
         }
         Sprite.eulerAngles = new Vector3(0, 0, 0);
+        AttackRotationCounterweight.eulerAngles = new Vector3(0, 0, 0);
     }
 
     //HANDLES THE PLAYERS JUMP
@@ -56,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //HANDLES LANDING
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Floor" && Self.tag == "ground collider")
         {
