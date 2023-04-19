@@ -62,19 +62,19 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //HANDLES LANDING
-    void OnCollisionStay2D(Collision2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Floor" && Self.tag == "ground collider")
+        if(Self.tag == "ground collider" && collision.tag != "Wall")
         {
             JumpAmount = MaxJumpAmount;
             IsGrounded = true;
         }
     }
-    
+
     //HANDLES LEAVING THE GROUND
-    void OnCollisionExit2D(Collision2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Floor" && Self.tag == "ground collider")
+        if (Self.tag == "ground collider")
         {
             IsGrounded = false;
         }

@@ -112,14 +112,7 @@ public class EventHandler : MonoBehaviour
             if (Input.GetButton("Jump") && Move.JumpAmount > 0 && JumpTimer == 0)
             {
                 Move.Player_Jump();
-                if(CharacterIndex == 0)
-                {
-                    JumpTimer = 0.4f;
-                }
-                else
-                {
-                    JumpTimer = 1f;
-                }
+                JumpTimer = 0.4f;
             }
 
             //USE ATTACK

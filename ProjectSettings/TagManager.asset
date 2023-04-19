@@ -8,6 +8,7 @@ TagManager:
   - ground collider
   - Interactable
   - Player Attack
+  - Wall
   layers:
   - Default
   - TransparentFX
