@@ -5,14 +5,13 @@ using UnityEngine;
 public class Hittable_block : MonoBehaviour
 {
     public Rigidbody2D BlockPhysics;
-    public GameObject PlayerAttack;
     public bool IsGrounded;
 
     public PlayerMovement PlayerMovement;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == PlayerAttack)
+        if (collision.gameObject.tag == "Player HeavyAttack")
         {
             BlockPhysics.bodyType = RigidbodyType2D.Dynamic;
             BlockPhysics.constraints = RigidbodyConstraints2D.FreezeRotation;

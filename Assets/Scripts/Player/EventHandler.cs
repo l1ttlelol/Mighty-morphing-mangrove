@@ -10,6 +10,7 @@ public class EventHandler : MonoBehaviour
     public float JumpTimer;
     public float AttackActiveTimer;
     public float AttackCooldownTimer;
+    public float AbilityTimer;
     public int CharacterIndex = 1;
     public CharacterData[] CharacterData;
 
@@ -20,6 +21,7 @@ public class EventHandler : MonoBehaviour
     public PlayerAbilityGrab Grab;
     public PlayerAbilityHeavyAttack HeavyAttack;
     public GameObject PlayerAttack;
+    public GameObject PlayerHeavyAttack;
 
     void FixedUpdate()
     {
@@ -41,6 +43,7 @@ public class EventHandler : MonoBehaviour
         {
             AttackActiveTimer = 0;
             PlayerAttack.SetActive(false);
+            PlayerHeavyAttack.SetActive(false);
         }
 
         //Counting down until the next attack
@@ -48,6 +51,12 @@ public class EventHandler : MonoBehaviour
         if (AttackCooldownTimer < 0)
         {
             AttackCooldownTimer = 0;
+        }
+
+        AbilityTimer -= Time.deltaTime;
+        if (AbilityTimer < 0)
+        {
+            AbilityTimer = 0;
         }
 
         //CHARACTER SELECTION MENU
@@ -118,13 +127,20 @@ public class EventHandler : MonoBehaviour
             //USE ATTACK
             if (Input.GetButton("Attack") && AttackCooldownTimer == 0)
             {
-                PlayerAttack.SetActive(true);
+                if(CharacterIndex != 2)
+                {
+                    PlayerAttack.SetActive(true);
+                }
+                else
+                {
+                    PlayerHeavyAttack.SetActive(true);
+                }
                 AttackActiveTimer = 0.4f;
                 AttackCooldownTimer = 0.8f;
             }
 
             //USE CHARACTER ABILITY
-            if (Input.GetButton("Ability"))
+            if (Input.GetButton("Ability") && AbilityTimer <= 0)
             {
                 //print("ability");
                 if (CharacterIndex == 1)
@@ -141,6 +157,7 @@ public class EventHandler : MonoBehaviour
                 {
                     //print("No ability");
                 }
+                AbilityTimer = 1f;
             }
         }
     }

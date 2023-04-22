@@ -9,6 +9,7 @@ TagManager:
   - Interactable
   - Player Attack
   - Wall
+  - Player HeavyAttack
   layers:
   - Default
   - TransparentFX

@@ -435,6 +435,7 @@ MonoBehaviour:
   JumpTimer: 0
   AttackActiveTimer: 0
   AttackCooldownTimer: 0
+  AbilityTimer: 0
   CharacterIndex: 1
   CharacterData:
   - {fileID: 11400000, guid: 27a4d8ce378705d4999e53d1a2c8218b, type: 2}
@@ -447,6 +448,7 @@ MonoBehaviour:
   Grab: {fileID: 7999563491499584068}
   HeavyAttack: {fileID: 7999563491499584069}
   PlayerAttack: {fileID: 213906879}
+  PlayerHeavyAttack: {fileID: 0}
 --- !u!114 &7999563491499584071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,6 +468,7 @@ MonoBehaviour:
   Direction: 0
   IsGrounded: 0
   Friction: 0.9
+  PlayerDirection: 0
   PlayerTransform: {fileID: 7999563491499584121}
   RigidBody: {fileID: 7999563491499584123}
   GroundCollider: {fileID: 7999563491919894167}
@@ -484,6 +487,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3febafb4fa49f09428c91916a0fad720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  PlayerMovement: {fileID: 0}
+  DashActiveTimer: 0
 --- !u!114 &7999563491499584069
 MonoBehaviour:
   m_ObjectHideFlags: 0
