@@ -7,12 +7,18 @@ public class EventHandler : MonoBehaviour
     //Variables
     public bool IsCharacterSelecting;
     public Sprite CharacterIdleSprite;
+    public Sprite CharacterJumpSprite;
+    public Sprite CharacterRun1Sprite;
+    public Sprite CharacterRun2Sprite;
     public float JumpTimer;
     public float AttackActiveTimer;
     public float AttackCooldownTimer;
     public float AbilityTimer;
+    public float RunAnimationTimer;
+    public bool IsRunAnimation1;
     public int CharacterIndex = 1;
     public CharacterData[] CharacterData;
+    public bool IsMoving;
 
     //References
     public PlayerMovement Move;
@@ -22,13 +28,14 @@ public class EventHandler : MonoBehaviour
     public PlayerAbilityHeavyAttack HeavyAttack;
     public GameObject PlayerAttack;
     public GameObject PlayerHeavyAttack;
+    public AudioHandler AudioHandler;
 
     void FixedUpdate()
     {
         //sets the data for the active character
         GetData();
 
-        CharacterSprite.sprite = CharacterIdleSprite; //PLACEHOLDER
+        //CharacterSprite.sprite = CharacterIdleSprite; //PLACEHOLDER
 
         //Counting down the Jump timer
         JumpTimer -= Time.deltaTime;
@@ -58,6 +65,8 @@ public class EventHandler : MonoBehaviour
         {
             AbilityTimer = 0;
         }
+
+        //===========================================================
 
         //CHARACTER SELECTION MENU
         if (Input.GetButton("Character Select") && Input.GetButton("Character Select Up"))
@@ -100,6 +109,8 @@ public class EventHandler : MonoBehaviour
             IsCharacterSelecting = false;
         }
 
+        //============================================================
+
         //NONE CHARACTER SELECTION MENU
         if (IsCharacterSelecting == false)
         {
@@ -107,7 +118,7 @@ public class EventHandler : MonoBehaviour
             if (Input.GetAxis("Horizontal") < 0)
             {
                 //print("left");
-                Move.Player_MoveLeft();
+                Move.Player_MoveLeft(); 
             }
 
             //MOVE RIGHT
@@ -127,9 +138,16 @@ public class EventHandler : MonoBehaviour
             //USE ATTACK
             if (Input.GetButton("Attack") && AttackCooldownTimer == 0)
             {
+                AudioHandler.AttackAudio();
                 if(CharacterIndex != 2)
                 {
                     PlayerAttack.SetActive(true);
+
+                    if (CharacterIndex == 1)
+                    {
+                        Dash.PlayerAbility_Dash();
+                        AudioHandler.DashAudio();
+                    }
                 }
                 else
                 {
@@ -138,26 +156,59 @@ public class EventHandler : MonoBehaviour
                 AttackActiveTimer = 0.4f;
                 AttackCooldownTimer = 0.8f;
             }
+        }
 
-            //USE CHARACTER ABILITY
-            if (Input.GetButton("Ability") && AbilityTimer <= 0)
+        //============================================================
+
+        //Handling run animation timing
+        RunAnimationTimer -= Time.deltaTime;
+        if (RunAnimationTimer < 0)
+        {
+            RunAnimationTimer = 0;
+        }
+
+        //HANDLING ANIMATION
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            IsMoving = true;
+            //IsRunAnimation1 = true;
+            //RunAnimationTimer = 0.2f;
+        }
+        else
+        {
+            IsMoving = false;
+        }
+
+        //Idle animation
+        if (IsMoving == false && Move.IsGrounded == true)
+        {
+            CharacterSprite.sprite = CharacterIdleSprite;
+        }
+        else if (Move.IsGrounded == false)      //Airborne animation
+        {
+            CharacterSprite.sprite = CharacterJumpSprite;
+        }
+        else if (IsMoving == true)              //Running Animation
+        {
+            if(IsRunAnimation1 == true)
             {
-                //print("ability");
-                if (CharacterIndex == 1)
+                CharacterSprite.sprite = CharacterRun1Sprite;
+
+                if (RunAnimationTimer <= 0)
                 {
-                    Dash.PlayerAbility_Dash();
-                }else if (CharacterIndex == 2)
-                {
-                    HeavyAttack.PlayerAbility_HeavyAttack();
-                }else if (CharacterIndex == 3)
-                {
-                    Grab.PlayerAbility_Grab();
+                    RunAnimationTimer = 0.15f;
+                    IsRunAnimation1 = false;
                 }
-                else
+            }
+            else
+            {
+                CharacterSprite.sprite = CharacterRun2Sprite;
+
+                if (RunAnimationTimer <= 0)
                 {
-                    //print("No ability");
+                    RunAnimationTimer = 0.15f;
+                    IsRunAnimation1 = true;
                 }
-                AbilityTimer = 1f;
             }
         }
     }
@@ -166,6 +217,9 @@ public class EventHandler : MonoBehaviour
     void GetData()
     {
         CharacterIdleSprite = CharacterData[CharacterIndex].IdleSprite;
+        CharacterJumpSprite = CharacterData[CharacterIndex].JumpSprite;
+        CharacterRun1Sprite = CharacterData[CharacterIndex].Run1;
+        CharacterRun2Sprite = CharacterData[CharacterIndex].Run2;
         Move.MaxJumpAmount = CharacterData[CharacterIndex].MaxJumps;
         if(Move.IsGrounded == true)
         {

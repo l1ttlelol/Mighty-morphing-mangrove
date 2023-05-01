@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7278207571720995197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.193, z: 0}
+  m_LocalScale: {x: 1, y: 2.475, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7278207572606148927}
@@ -71,10 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea8e256bfe5153438b4ca1cc7d76c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpResetBox: {fileID: 0}
   PhysicalWall: {fileID: 7278207572809180905}
   Inside: {fileID: 7278207572055518709}
-  IsPlatform: 0
 --- !u!1 &7278207572055518667
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform Sprite;
     public GameObject Self;
     public Transform AttackRotationCounterweight;
+    public AudioHandler AudioHandler;
 
     //HANDLES THE PLAYERS LEFT MOVEMENT
     public void Player_MoveLeft()
@@ -59,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     {
         RigidBody.AddForce(transform.up * JumpHeight);
         JumpAmount -= 1;
+        AudioHandler.JumpAudio();
     }
 
     //HANDLES LANDING
@@ -68,6 +70,13 @@ public class PlayerMovement : MonoBehaviour
         {
             JumpAmount = MaxJumpAmount;
             IsGrounded = true;
+        }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (Self.tag == "ground collider" && collision.tag != "Wall")
+        {
+            AudioHandler.LandingAudio();
         }
     }
 

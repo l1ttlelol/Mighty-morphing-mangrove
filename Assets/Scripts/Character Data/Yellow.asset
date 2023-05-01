@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Yellow
   m_EditorClassIdentifier: 
   IdleSprite: {fileID: 21300000, guid: 805483886a16b544fb41d4aa6971256d, type: 3}
+  Run1: {fileID: 21300000, guid: fcd1df5374985f242a0c4210df619dde, type: 3}
+  Run2: {fileID: 21300000, guid: 21f5b52769677874da62b721b51edce2, type: 3}
+  JumpSprite: {fileID: 21300000, guid: 8e7173bbce121ae43a0dc1555a38263c, type: 3}
   MaxJumps: 1

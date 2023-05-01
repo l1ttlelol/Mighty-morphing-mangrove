@@ -34,6 +34,9 @@ public class OneWayWallHandler : MonoBehaviour
     
     void OnTriggerExit2D(Collider2D collision)
     {
-        IsActive = false;
+        if(collision.tag != "PlayerAttack" || collision.tag != "PlayerHeavyAttack")
+        {
+            IsActive = false;
+        }
     }
 }
