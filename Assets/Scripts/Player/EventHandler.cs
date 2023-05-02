@@ -226,4 +226,13 @@ public class EventHandler : MonoBehaviour
             Move.JumpAmount = Move.MaxJumpAmount;
         }
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Damage source")
+        {
+            print("Damage Taken");
+            //Self.SetActive(false);
+        }
+    }
 }
