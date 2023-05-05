@@ -29,6 +29,7 @@ public class EventHandler : MonoBehaviour
     public GameObject PlayerAttack;
     public GameObject PlayerHeavyAttack;
     public AudioHandler AudioHandler;
+    public PlayerManager PlayerManager;
 
     void FixedUpdate()
     {
@@ -231,8 +232,12 @@ public class EventHandler : MonoBehaviour
     {
         if (collision.gameObject.tag == "Damage source")
         {
-            print("Damage Taken");
-            //Self.SetActive(false);
+            PlayerManager.RecoverableDamage();
+        }
+
+        if (collision.gameObject.tag == "UnrecoverableDamage")
+        {
+            PlayerManager.NonRecoverableDamage();
         }
     }
 }

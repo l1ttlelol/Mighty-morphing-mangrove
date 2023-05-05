@@ -12,6 +12,8 @@ TagManager:
   - Player HeavyAttack
   - TriggerBox
   - Damage source
+  - PlayerHitbox
+  - UnrecoverableDamage
   layers:
   - Default
   - TransparentFX
