@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject[] HealthUI;
     public GameObject PlayerCharacter;
     public Transform PlayerTransform;
+    public GameObject GameOverMenu;
 
     //Variables
     public int MaxHealth;
@@ -20,6 +22,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         CurrentHealth = MaxHealth;
+        GameOverMenu.SetActive(false);
     }
 
     void Update()
@@ -87,7 +90,23 @@ public class PlayerManager : MonoBehaviour
     void GameOver()
     {
         //RETRY SCREEN SHIT GOES HERE
+        GameOverMenu.SetActive(true);
+    }
+
+    public void RetryButton()
+    {
+        GameOverMenu.SetActive(false);
         SetMaxHealth();
         ResetToHardCheckpoint();
+    }
+
+    public void RetryStartButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitButton()
+    {
+        Application.Quit();
     }
 }
