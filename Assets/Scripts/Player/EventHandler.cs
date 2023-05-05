@@ -36,8 +36,6 @@ public class EventHandler : MonoBehaviour
         //sets the data for the active character
         GetData();
 
-        //CharacterSprite.sprite = CharacterIdleSprite; //PLACEHOLDER
-
         //Counting down the Jump timer
         JumpTimer -= Time.deltaTime;
         if(JumpTimer < 0)
@@ -68,94 +66,98 @@ public class EventHandler : MonoBehaviour
         }
 
         //===========================================================
+        if (PlayerManager.CurrentHealth != 0)
+        {
 
-        //CHARACTER SELECTION MENU
-        if (Input.GetButton("Character Select") && Input.GetButton("Character Select Up"))
-        {
-            //UP
-            //print("Character Select Up");
-            IsCharacterSelecting = true;
-            CharacterIndex = 0;
-        }
-        else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Right"))
-        {
-            //RIGHT
-            //print("Character Select Right");
-            IsCharacterSelecting = true;
-            CharacterIndex = 1;
-        }
-        else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Down"))
-        {
-            //DOWN
-            //print("Character Select Down");
-            IsCharacterSelecting = true;
-            CharacterIndex = 2;
-        }
-        else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Left"))
-        {
-            //LEFT
-            //print("Character Select Left");
-            IsCharacterSelecting = true;
-            CharacterIndex = 3;
-        }
-        else if(Input.GetButton("Character Select"))
-        {
-            //NONE
-            //print("Character Select Menu");
-            IsCharacterSelecting = true;
-        }
-        else
-        {
-            //DESELECTING
-            IsCharacterSelecting = false;
-        }
 
-        //============================================================
-
-        //NONE CHARACTER SELECTION MENU
-        if (IsCharacterSelecting == false)
-        {
-            //MOVE LEFT
-            if (Input.GetAxis("Horizontal") < 0)
+            //CHARACTER SELECTION MENU
+            if (Input.GetButton("Character Select") && Input.GetButton("Character Select Up"))
             {
-                //print("left");
-                Move.Player_MoveLeft(); 
+                //UP
+                //print("Character Select Up");
+                IsCharacterSelecting = true;
+                CharacterIndex = 0;
+            }
+            else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Right"))
+            {
+                //RIGHT
+                //print("Character Select Right");
+                IsCharacterSelecting = true;
+                CharacterIndex = 1;
+            }
+            else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Down"))
+            {
+                //DOWN
+                //print("Character Select Down");
+                IsCharacterSelecting = true;
+                CharacterIndex = 2;
+            }
+            else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Left"))
+            {
+                //LEFT
+                //print("Character Select Left");
+                IsCharacterSelecting = true;
+                CharacterIndex = 3;
+            }
+            else if (Input.GetButton("Character Select"))
+            {
+                //NONE
+                //print("Character Select Menu");
+                IsCharacterSelecting = true;
+            }
+            else
+            {
+                //DESELECTING
+                IsCharacterSelecting = false;
             }
 
-            //MOVE RIGHT
-            if (Input.GetAxis("Horizontal") > 0)
-            {
-                //print("right");
-                Move.Player_MoveRight();
-            }
+            //============================================================
 
-            //JUMP
-            if (Input.GetButton("Jump") && Move.JumpAmount > 0 && JumpTimer == 0)
+            //NONE CHARACTER SELECTION MENU
+            if (IsCharacterSelecting == false)
             {
-                Move.Player_Jump();
-                JumpTimer = 0.4f;
-            }
-
-            //USE ATTACK
-            if (Input.GetButton("Attack") && AttackCooldownTimer == 0)
-            {
-                AudioHandler.AttackAudio();
-                if(CharacterIndex != 2)
+                //MOVE LEFT
+                if (Input.GetAxis("Horizontal") < 0)
                 {
-                    PlayerAttack.SetActive(true);
+                    //print("left");
+                    Move.Player_MoveLeft();
+                }
 
-                    if (CharacterIndex == 1)
+                //MOVE RIGHT
+                if (Input.GetAxis("Horizontal") > 0)
+                {
+                    //print("right");
+                    Move.Player_MoveRight();
+                }
+
+                //JUMP
+                if (Input.GetButton("Jump") && Move.JumpAmount > 0 && JumpTimer == 0)
+                {
+                    Move.Player_Jump();
+                    JumpTimer = 0.4f;
+                }
+
+                //USE ATTACK
+                if (Input.GetButton("Attack") && AttackCooldownTimer == 0)
+                {
+                    AudioHandler.AttackAudio();
+                    if (CharacterIndex != 2)
                     {
-                        Dash.PlayerAbility_Dash();
-                        AudioHandler.DashAudio();
+                        PlayerAttack.SetActive(true);
+
+                        if (CharacterIndex == 1)
+                        {
+                            Dash.PlayerAbility_Dash();
+                            AudioHandler.DashAudio();
+                        }
                     }
+                    else
+                    {
+                        PlayerHeavyAttack.SetActive(true);
+                    }
+                    AttackActiveTimer = 0.4f;
+                    AttackCooldownTimer = 0.8f;
                 }
-                else
-                {
-                    PlayerHeavyAttack.SetActive(true);
-                }
-                AttackActiveTimer = 0.4f;
-                AttackCooldownTimer = 0.8f;
             }
         }
 
