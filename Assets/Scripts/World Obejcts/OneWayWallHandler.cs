@@ -26,7 +26,7 @@ public class OneWayWallHandler : MonoBehaviour
     void OnTriggerStay2D(Collider2D collision)
     {
         
-        if(Inside.IsInside == false)
+        if(collision.tag == "Player" && Inside.IsInside == false)
         {
             IsActive = true;
         }
@@ -34,7 +34,7 @@ public class OneWayWallHandler : MonoBehaviour
     
     void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.tag != "PlayerAttack" || collision.tag != "PlayerHeavyAttack")
+        if(collision.tag == "Player")
         {
             IsActive = false;
         }

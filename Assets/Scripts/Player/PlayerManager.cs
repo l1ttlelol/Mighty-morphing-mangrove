@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     public Transform PlayerTransform;
     public GameObject GameOverMenu;
     public Button FirstButtonSelect;
+    public CheckpointData CheckpointData;
 
     //Variables
     public int MaxHealth;
@@ -65,7 +66,8 @@ public class PlayerManager : MonoBehaviour
 
     void ResetToHardCheckpoint()
     {
-        PlayerTransform.position = LastHardCheckpoint;
+        //PlayerTransform.position = CheckpointData.HardCheckpointLocation;
+        CheckpointData.HardCheckpointLocation = LastHardCheckpoint;
     }
 
     public void RecoverableDamage()
@@ -105,13 +107,14 @@ public class PlayerManager : MonoBehaviour
     public void RetryButton()
     {
         GameOverMenu.SetActive(false);
-        SetMaxHealth();
         ResetToHardCheckpoint();
         Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void RetryStartButton()
     {
+        CheckpointData.HardCheckpointLocation = new Vector2(-7.06f, 2.49f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
     }

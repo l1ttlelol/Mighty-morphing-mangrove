@@ -153,9 +153,12 @@ MonoBehaviour:
   WallBoxTransform: {fileID: 2884123951284453534}
   FloorBoxTransform: {fileID: 2884123949668298508}
   EnemyRigidBody: {fileID: 2884123950189050360}
+  Self: {fileID: 2884123951327921122}
   IsDirectionRight: 0
   Velocity: 1
   IsColliding: 0
+  Health: 0
+  MaxHealth: 5
 --- !u!50 &2884123950189050360
 Rigidbody2D:
   serializedVersion: 4

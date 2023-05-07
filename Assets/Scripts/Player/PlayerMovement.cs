@@ -22,6 +22,12 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Self;
     public Transform AttackRotationCounterweight;
     public AudioHandler AudioHandler;
+    public CheckpointData CheckpointData;
+
+    void Start()
+    {
+        PlayerTransform.position = CheckpointData.HardCheckpointLocation;
+    }
 
     //HANDLES THE PLAYERS LEFT MOVEMENT
     public void Player_MoveLeft()
