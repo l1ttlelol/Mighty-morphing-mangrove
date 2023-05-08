@@ -15,6 +15,7 @@ TagManager:
   - PlayerHitbox
   - UnrecoverableDamage
   - Soft Wall
+  - Water
   layers:
   - Default
   - TransparentFX

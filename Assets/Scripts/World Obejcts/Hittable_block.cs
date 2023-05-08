@@ -20,7 +20,7 @@ public class Hittable_block : MonoBehaviour
         }
 
         //HANDLES LANDING
-        if (collision.gameObject.tag == "Floor")
+        if (collision.gameObject.tag == "Floor" || collision.gameObject.tag == "UnrecoverableDamage")
         {
             IsGrounded = true;
             BlockPhysics.bodyType = RigidbodyType2D.Static;
