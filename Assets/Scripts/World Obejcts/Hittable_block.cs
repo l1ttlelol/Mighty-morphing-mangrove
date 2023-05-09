@@ -6,19 +6,16 @@ public class Hittable_block : MonoBehaviour
 {
     public Rigidbody2D BlockPhysics;
     public bool IsGrounded;
+    public Transform Collider;
+    public Transform Detector;
 
-    public PlayerMovement PlayerMovement;
+    void Update()
+    {
+        Detector.position = Collider.position;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player HeavyAttack")
-        {
-            BlockPhysics.bodyType = RigidbodyType2D.Dynamic;
-            BlockPhysics.constraints = RigidbodyConstraints2D.FreezeRotation;
-            BlockPhysics.AddForce(transform.up * 150);
-            BlockPhysics.AddForce(new Vector2(PlayerMovement.PlayerDirection * 200, 0));
-        }
-
         //HANDLES LANDING
         if (collision.gameObject.tag == "Floor" || collision.gameObject.tag == "UnrecoverableDamage")
         {

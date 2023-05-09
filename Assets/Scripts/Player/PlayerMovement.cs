@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
             PlayerTransform.Translate(Vector3.left * Velocity * Time.deltaTime);
         }
         Sprite.eulerAngles = new Vector3(0, 180, 0);
-        AttackRotationCounterweight.eulerAngles = new Vector3(0, 180, 0);
         PlayerDirection = -1;
     }
     
@@ -57,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
             PlayerTransform.Translate(Vector3.right * Velocity * Time.deltaTime);
         }
         Sprite.eulerAngles = new Vector3(0, 0, 0);
-        AttackRotationCounterweight.eulerAngles = new Vector3(0, 0, 0);
         PlayerDirection = 1;
     }
 

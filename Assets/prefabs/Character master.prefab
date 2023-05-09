@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 115295297}
   m_Layer: 0
   m_Name: Player_AttackCounterweight
-  m_TagString: Untagged
+  m_TagString: PlayerHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 213906880}
-  - {fileID: 798370895}
+  - {fileID: 4713577753719022833}
   m_Father: {fileID: 7999563491499584121}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -111,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.33}
+  m_Size: {x: 0.19, y: 0.46}
   m_EdgeRadius: 0
 --- !u!1 &213906879
 GameObject:
@@ -140,8 +140,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 213906879}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2868, y: 0.049, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.253, y: 0.121, z: 0}
+  m_LocalScale: {x: 2.2462506, y: 2.2462506, z: 2.2462506}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115295296}
@@ -187,8 +187,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 65f0e363b74cf5845ab8c3fbc14f39ac, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: f986f75a97ad4024fb27ec9621723c5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -212,18 +212,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.1, y: 0.08}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.33}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.16, y: 0.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.33}
+  m_Size: {x: 0.19, y: 0.18}
   m_EdgeRadius: 0
 --- !u!50 &213906883
 Rigidbody2D:
@@ -235,7 +235,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 213906879}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 1
+  m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.36085752
   m_LinearDrag: 0
@@ -246,7 +246,7 @@ Rigidbody2D:
   m_SleepingMode: 2
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!1 &798370894
+--- !u!1 &5522193821661769646
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,10 +254,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 798370895}
-  - component: {fileID: 798370898}
-  - component: {fileID: 798370897}
-  - component: {fileID: 798370896}
+  - component: {fileID: 4713577753719022833}
+  - component: {fileID: 1536661963223068722}
+  - component: {fileID: 8596075336010132045}
+  - component: {fileID: 7940588936317279237}
   m_Layer: 0
   m_Name: Player_HeavyAttack
   m_TagString: Player HeavyAttack
@@ -265,28 +265,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &798370895
+--- !u!4 &4713577753719022833
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798370894}
+  m_GameObject: {fileID: 5522193821661769646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2868, y: 0.049, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.253, y: 0.121, z: 0}
+  m_LocalScale: {x: 2.2462506, y: 2.2462506, z: 2.2462506}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115295296}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &798370898
+--- !u!212 &1536661963223068722
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798370894}
+  m_GameObject: {fileID: 5522193821661769646}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -320,8 +320,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 65f0e363b74cf5845ab8c3fbc14f39ac, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 0a337a04b7a2fa54fba24090fe2af831, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -332,43 +332,43 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &798370897
+--- !u!61 &8596075336010132045
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798370894}
+  m_GameObject: {fileID: 5522193821661769646}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.1, y: 0.08}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.33}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.16, y: 0.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.33}
+  m_Size: {x: 0.19, y: 0.18}
   m_EdgeRadius: 0
---- !u!50 &798370896
+--- !u!50 &7940588936317279237
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798370894}
+  m_GameObject: {fileID: 5522193821661769646}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 1
+  m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.36085752
   m_LinearDrag: 0
@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 7999563491499584068}
   m_Layer: 0
   m_Name: Character master
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -588,7 +588,11 @@ MonoBehaviour:
   Grab: {fileID: 7999563491499584068}
   HeavyAttack: {fileID: 7999563491499584069}
   PlayerAttack: {fileID: 213906879}
-  PlayerHeavyAttack: {fileID: 798370894}
+  PlayerHeavyAttack: {fileID: 0}
+  AttackCounterWeight: {fileID: 115295296}
+  AudioHandler: {fileID: 0}
+  PlayerManager: {fileID: 0}
+  PlayerMovement: {fileID: 7999563491499584071}
 --- !u!114 &7999563491499584071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,6 +619,8 @@ MonoBehaviour:
   Sprite: {fileID: 7999563492714142797}
   Self: {fileID: 7999563491919894166}
   AttackRotationCounterweight: {fileID: 115295296}
+  AudioHandler: {fileID: 0}
+  CheckpointData: {fileID: 11400000, guid: 9ff6dd81494a87a418dc99211dbcb759, type: 2}
 --- !u!114 &7999563491499584066
 MonoBehaviour:
   m_ObjectHideFlags: 0

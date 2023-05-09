@@ -10,6 +10,8 @@ public class EventHandler : MonoBehaviour
     public Sprite CharacterJumpSprite;
     public Sprite CharacterRun1Sprite;
     public Sprite CharacterRun2Sprite;
+    public Sprite SpearSprite;
+    public Sprite SwordSprite;
     public float JumpTimer;
     public float AttackActiveTimer;
     public float AttackCooldownTimer;
@@ -23,13 +25,16 @@ public class EventHandler : MonoBehaviour
     //References
     public PlayerMovement Move;
     public SpriteRenderer CharacterSprite;
+    public SpriteRenderer WeaponSprite;
     public PlayerAbilityDash Dash;
     public PlayerAbilityGrab Grab;
     public PlayerAbilityHeavyAttack HeavyAttack;
     public GameObject PlayerAttack;
     public GameObject PlayerHeavyAttack;
+    public Transform AttackCounterWeight;
     public AudioHandler AudioHandler;
     public PlayerManager PlayerManager;
+    public PlayerMovement PlayerMovement;
 
     void FixedUpdate()
     {
@@ -50,6 +55,18 @@ public class EventHandler : MonoBehaviour
             AttackActiveTimer = 0;
             PlayerAttack.SetActive(false);
             PlayerHeavyAttack.SetActive(false);
+            AttackCounterWeight.eulerAngles = new Vector3(0, 0, 32.902f);
+        }
+        else
+        {
+            if(PlayerMovement.PlayerDirection == -1)
+            {
+                AttackCounterWeight.eulerAngles = new Vector3(0, 180, AttackCounterWeight.eulerAngles.z - 7f);
+            }
+            else
+            {
+                AttackCounterWeight.eulerAngles = new Vector3(0, 0, AttackCounterWeight.eulerAngles.z - 7f);
+            }
         }
 
         //Counting down until the next attack
@@ -149,6 +166,11 @@ public class EventHandler : MonoBehaviour
                         {
                             Dash.PlayerAbility_Dash();
                             AudioHandler.DashAudio();
+                            WeaponSprite.sprite = SpearSprite;
+                        }
+                        else
+                        {
+                            WeaponSprite.sprite = SwordSprite;
                         }
                     }
                     else
@@ -156,7 +178,7 @@ public class EventHandler : MonoBehaviour
                         PlayerHeavyAttack.SetActive(true);
                     }
                     AttackActiveTimer = 0.4f;
-                    AttackCooldownTimer = 0.8f;
+                    AttackCooldownTimer = 1.5f;
                 }
             }
         }
