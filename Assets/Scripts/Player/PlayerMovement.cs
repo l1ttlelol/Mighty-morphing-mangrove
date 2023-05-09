@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     //HANDLES LANDING
     void OnTriggerStay2D(Collider2D collision)
     {
-        if(Self.tag == "ground collider" && collision.tag != "Wall" && collision.tag != "TriggerBox")
+        if(Self.tag == "ground collider" && collision.tag != "Wall" && collision.tag != "TriggerBox" && collision.tag != "Checkpoint")
         {
             JumpAmount = MaxJumpAmount;
             IsGrounded = true;
@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Self.tag == "ground collider" && collision.tag != "Wall" && collision.tag != "TriggerBox")
+        if (Self.tag == "ground collider" && collision.tag != "Wall" && collision.tag != "TriggerBox" && collision.tag != "Checkpoint")
         {
             AudioHandler.LandingAudio();
         }

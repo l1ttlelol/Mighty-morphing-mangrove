@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7105355757045558701}
   m_Layer: 0
   m_Name: Soft Checkpoint
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

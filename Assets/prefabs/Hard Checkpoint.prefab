@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1552726300773680160}
   m_Layer: 0
   m_Name: Hard Checkpoint
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,4 +72,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   self: {fileID: 8581379508022520201}
-  CheckpointData: {fileID: 11400000, guid: 9ff6dd81494a87a418dc99211dbcb759, type: 2}
+  PlayerManager: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7347089136706596852}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -295,6 +295,7 @@ MonoBehaviour:
   Door: {fileID: 7347089136706596853}
   DoorStartState: 1
   DoorCurrentState: 0
+  AudioHandler: {fileID: 0}
 --- !u!50 &4139426162995420972
 Rigidbody2D:
   serializedVersion: 4
