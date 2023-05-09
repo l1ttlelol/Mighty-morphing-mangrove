@@ -24,10 +24,8 @@ public class DoorHandler : MonoBehaviour
     //ACTIVATING THE SWITCH AND ALTERNATING THE DOORS STATE
     void OnTriggerEnter2D(Collider2D collision)
     {
-        print("test");
         if (collision.gameObject.tag == "Player Attack")
         {
-            print("test2");
             if (DoorCurrentState == true) { DoorCurrentState = false; }
             else { DoorCurrentState = true; }
         }

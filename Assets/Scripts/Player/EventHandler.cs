@@ -178,7 +178,7 @@ public class EventHandler : MonoBehaviour
                         PlayerHeavyAttack.SetActive(true);
                     }
                     AttackActiveTimer = 0.4f;
-                    AttackCooldownTimer = 1.5f;
+                    AttackCooldownTimer = 1f;
                 }
             }
         }
