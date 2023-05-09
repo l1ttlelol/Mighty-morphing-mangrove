@@ -8,6 +8,7 @@ public class DoorHandler : MonoBehaviour
     public GameObject Door;
     public bool DoorStartState;
     public bool DoorCurrentState;
+    public AudioHandler AudioHandler;
 
     //SETTING THE INITIAL STATE OF THE DOOR
     void Start()
@@ -24,8 +25,9 @@ public class DoorHandler : MonoBehaviour
     //ACTIVATING THE SWITCH AND ALTERNATING THE DOORS STATE
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player Attack")
+        if (collision.gameObject.tag == "Player Attack" || collision.gameObject.tag == "Player HeavyAttack")
         {
+            AudioHandler.HitAudio();
             if (DoorCurrentState == true) { DoorCurrentState = false; }
             else { DoorCurrentState = true; }
         }

@@ -257,11 +257,14 @@ public class EventHandler : MonoBehaviour
         if (collision.gameObject.tag == "Damage source")
         {
             PlayerManager.RecoverableDamage();
+            AudioHandler.HitAudio();
         }
 
         if (collision.gameObject.tag == "UnrecoverableDamage")
         {
             PlayerManager.NonRecoverableDamage();
+            AudioHandler.HitAudio();
+            AudioHandler.SplashAudio();
         }
     }
 }

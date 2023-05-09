@@ -14,6 +14,7 @@ public class CrabEnemy : MonoBehaviour
     public Transform FloorBoxTransform;
     public Rigidbody2D EnemyRigidBody;
     public GameObject Self;
+    public AudioHandler AudioHandler;
 
     //Variables
     public bool IsDirectionRight;
@@ -63,10 +64,12 @@ public class CrabEnemy : MonoBehaviour
         }
         if (collision.gameObject.tag == "Player Attack")
         {
+            AudioHandler.HitAudio();
             Health -= 1;
         }
         if (collision.gameObject.tag == "Player HeavyAttack")
         {
+            AudioHandler.HitAudio();
             Health -= 2;
         }
 

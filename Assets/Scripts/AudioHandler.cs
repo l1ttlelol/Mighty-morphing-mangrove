@@ -8,6 +8,10 @@ public class AudioHandler : MonoBehaviour
     public AudioSource LandingAudioSource;
     public AudioSource DashAudioSource;
     public AudioSource AttackAudioSource;
+    public AudioSource HitAudioSource;
+    public AudioSource FrogAudioSource;
+    public AudioSource CrocadileAudioSource;
+    public AudioSource SplashAudioSource;
 
     public void JumpAudio()
     {
@@ -26,6 +30,28 @@ public class AudioHandler : MonoBehaviour
 
     public void AttackAudio()
     {
-        AttackAudioSource.Play();
+        //AttackAudioSource.Play();
+        DashAudioSource.Play();
     }
+
+    public void HitAudio()
+    {
+        HitAudioSource.Play();
+    }
+
+    public void FrogAudio()
+    {
+        FrogAudioSource.Play();
+    }
+
+    public void CrocadileAudio()
+    {
+        CrocadileAudioSource.Play();
+    }
+
+    public void SplashAudio()
+    {
+        SplashAudioSource.Play();
+    }
+
 }

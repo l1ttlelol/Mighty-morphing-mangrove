@@ -13,6 +13,7 @@ public class Crocadile : MonoBehaviour
     public Transform DamageBoxTransform;
     public Rigidbody2D EnemyRigidBody;
     public GameObject Self;
+    public AudioHandler AudioHandler;
 
     //Variables
     public bool IsDirectionRight;
@@ -45,6 +46,7 @@ public class Crocadile : MonoBehaviour
                 EnemyRigidBody.bodyType = RigidbodyType2D.Dynamic;
                 EnemyRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
                 EnemyRigidBody.AddForce(transform.up * 600);
+                AudioHandler.CrocadileAudio();
             }
         }
 
@@ -63,15 +65,18 @@ public class Crocadile : MonoBehaviour
         if (collision.gameObject.tag == "Player Attack")
         {
             Health -= 1;
+            AudioHandler.HitAudio();
         }
         if (collision.gameObject.tag == "Player HeavyAttack")
         {
             Health -= 2;
+            AudioHandler.HitAudio();
         }
         //HANDLES LANDING
         if (collision.gameObject.tag == "Water")
         {
             EnemyRigidBody.bodyType = RigidbodyType2D.Static;
+            AudioHandler.SplashAudio();
         }
     }
 

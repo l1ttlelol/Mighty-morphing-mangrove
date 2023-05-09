@@ -13,6 +13,7 @@ public class Frog : MonoBehaviour
     public Transform TriggerBoxTransform;
     public Rigidbody2D EnemyRigidBody;
     public GameObject Self;
+    public AudioHandler AudioHandler;
 
     //Variables
     public bool IsDirectionRight;
@@ -54,6 +55,7 @@ public class Frog : MonoBehaviour
                 if(JumpTimer <= 0)
                 {
                     JumpTimer = 5f;
+                    AudioHandler.FrogAudio();
                     EnemyRigidBody.AddForce(transform.up * 300);
                     EnemyRigidBody.AddForce(transform.right * 200);
                 }
@@ -64,6 +66,7 @@ public class Frog : MonoBehaviour
                 if (JumpTimer <= 0)
                 {
                     JumpTimer = 5f;
+                    AudioHandler.FrogAudio();
                     EnemyRigidBody.AddForce(transform.up * 200);
                     EnemyRigidBody.AddForce(transform.right * 200);
                 }
@@ -84,10 +87,12 @@ public class Frog : MonoBehaviour
         }
         if (collision.gameObject.tag == "Player Attack")
         {
+            AudioHandler.HitAudio();
             Health -= 1;
         }
         if (collision.gameObject.tag == "Player HeavyAttack")
         {
+            AudioHandler.HitAudio();
             Health -= 2;
         }
     }

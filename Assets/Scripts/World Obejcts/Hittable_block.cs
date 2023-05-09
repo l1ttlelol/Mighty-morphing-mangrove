@@ -8,6 +8,7 @@ public class Hittable_block : MonoBehaviour
     public bool IsGrounded;
     public Transform Collider;
     public Transform Detector;
+    public AudioHandler AudioHandler;
 
     void Update()
     {
@@ -22,6 +23,7 @@ public class Hittable_block : MonoBehaviour
             IsGrounded = true;
             BlockPhysics.bodyType = RigidbodyType2D.Static;
         }
+        if (collision.gameObject.tag == "UnrecoverableDamage") { AudioHandler.SplashAudio(); }
     }
 
     //HANDLES LEAVING THE GROUND

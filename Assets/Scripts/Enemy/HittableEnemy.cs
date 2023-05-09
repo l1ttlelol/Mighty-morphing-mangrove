@@ -6,6 +6,7 @@ public class HittableEnemy : MonoBehaviour
 {
     public Rigidbody2D BlockPhysics;
     public bool IsGrounded;
+    public AudioHandler AudioHandler;
 
     public PlayerMovement PlayerMovement;
 
@@ -13,10 +14,12 @@ public class HittableEnemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player HeavyAttack")
         {
+            AudioHandler.HitAudio();
             BlockPhysics.bodyType = RigidbodyType2D.Dynamic;
             BlockPhysics.constraints = RigidbodyConstraints2D.FreezeRotation;
             BlockPhysics.AddForce(transform.up * 150);
             BlockPhysics.AddForce(new Vector2(PlayerMovement.PlayerDirection * 200, 0));
         }
+        if (collision.gameObject.tag == "UnrecoverableDamage") { AudioHandler.SplashAudio(); }
     }
 }
