@@ -54,7 +54,7 @@ public class Frog : MonoBehaviour
                 IsDirectionRight = true;
                 if(JumpTimer <= 0)
                 {
-                    JumpTimer = 5f;
+                    JumpTimer = 3.5f;
                     AudioHandler.FrogAudio();
                     EnemyRigidBody.AddForce(transform.up * 300);
                     EnemyRigidBody.AddForce(transform.right * 200);
@@ -65,9 +65,9 @@ public class Frog : MonoBehaviour
                 IsDirectionRight = false;
                 if (JumpTimer <= 0)
                 {
-                    JumpTimer = 5f;
+                    JumpTimer = 3.5f;
                     AudioHandler.FrogAudio();
-                    EnemyRigidBody.AddForce(transform.up * 200);
+                    EnemyRigidBody.AddForce(transform.up * 300);
                     EnemyRigidBody.AddForce(transform.right * 200);
                 }
             }

@@ -16,6 +16,7 @@ TagManager:
   - UnrecoverableDamage
   - Soft Wall
   - Water
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

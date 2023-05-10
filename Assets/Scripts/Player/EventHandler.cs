@@ -88,35 +88,35 @@ public class EventHandler : MonoBehaviour
 
 
             //CHARACTER SELECTION MENU
-            if (Input.GetButton("Character Select") && Input.GetButton("Character Select Up"))
+            if ((Input.GetButton("Character Select") || Input.GetButton("Character Select 2")) && Input.GetButton("Character Select Up"))
             {
                 //UP
                 //print("Character Select Up");
                 IsCharacterSelecting = true;
                 CharacterIndex = 0;
             }
-            else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Right"))
+            else if ((Input.GetButton("Character Select") || Input.GetButton("Character Select 2")) && Input.GetButton("Character Select Right"))
             {
                 //RIGHT
                 //print("Character Select Right");
                 IsCharacterSelecting = true;
                 CharacterIndex = 1;
             }
-            else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Down"))
+            else if ((Input.GetButton("Character Select") || Input.GetButton("Character Select 2")) && Input.GetButton("Character Select Down"))
             {
                 //DOWN
                 //print("Character Select Down");
                 IsCharacterSelecting = true;
                 CharacterIndex = 2;
             }
-            else if (Input.GetButton("Character Select") && Input.GetButton("Character Select Left"))
+            else if ((Input.GetButton("Character Select") || Input.GetButton("Character Select 2")) && Input.GetButton("Character Select Left"))
             {
                 //LEFT
                 //print("Character Select Left");
                 IsCharacterSelecting = true;
                 CharacterIndex = 3;
             }
-            else if (Input.GetButton("Character Select"))
+            else if (Input.GetButton("Character Select") || Input.GetButton("Character Select 2"))
             {
                 //NONE
                 //print("Character Select Menu");
@@ -134,14 +134,14 @@ public class EventHandler : MonoBehaviour
             if (IsCharacterSelecting == false)
             {
                 //MOVE LEFT
-                if (Input.GetAxis("Horizontal") < 0)
+                if (Input.GetAxis("Horizontal") < 0 || Input.GetButton("Left")) 
                 {
                     //print("left");
                     Move.Player_MoveLeft();
                 }
 
                 //MOVE RIGHT
-                if (Input.GetAxis("Horizontal") > 0)
+                if (Input.GetAxis("Horizontal") > 0 || Input.GetButton("Right"))
                 {
                     //print("right");
                     Move.Player_MoveRight();
@@ -155,7 +155,7 @@ public class EventHandler : MonoBehaviour
                 }
 
                 //USE ATTACK
-                if (Input.GetButton("Attack") && AttackCooldownTimer == 0)
+                if ((Input.GetButton("Attack") || Input.GetButton("Attack 2")) && AttackCooldownTimer == 0)
                 {
                     AudioHandler.AttackAudio();
                     if (CharacterIndex != 2)
@@ -193,7 +193,7 @@ public class EventHandler : MonoBehaviour
         }
 
         //HANDLING ANIMATION
-        if (Input.GetAxis("Horizontal") != 0)
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetButton("Left") || Input.GetButton("Right"))
         {
             IsMoving = true;
             //IsRunAnimation1 = true;

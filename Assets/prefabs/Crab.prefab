@@ -154,8 +154,9 @@ MonoBehaviour:
   FloorBoxTransform: {fileID: 2884123949668298508}
   EnemyRigidBody: {fileID: 2884123950189050360}
   Self: {fileID: 2884123951327921122}
+  AudioHandler: {fileID: 0}
   IsDirectionRight: 0
-  Velocity: 1
+  Velocity: 2
   IsColliding: 0
   Health: 0
   MaxHealth: 5
@@ -194,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlockPhysics: {fileID: 2884123950189050360}
   IsGrounded: 0
+  AudioHandler: {fileID: 0}
   PlayerMovement: {fileID: 0}
 --- !u!212 &2884123950189050361
 SpriteRenderer:
