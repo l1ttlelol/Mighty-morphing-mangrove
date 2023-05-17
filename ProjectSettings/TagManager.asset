@@ -17,6 +17,7 @@ TagManager:
   - Soft Wall
   - Water
   - Checkpoint
+  - Whip
   layers:
   - Default
   - TransparentFX

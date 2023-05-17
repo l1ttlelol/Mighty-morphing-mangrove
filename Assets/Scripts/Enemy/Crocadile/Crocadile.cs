@@ -23,6 +23,7 @@ public class Crocadile : MonoBehaviour
     public float JumpTimer;
     public int Health;
     public int MaxHealth;
+    public float ImmunityTimer;
 
     void Start()
     {
@@ -36,6 +37,8 @@ public class Crocadile : MonoBehaviour
         DamageBoxTransform.position = SelfTransform.position;
 
         JumpTimer -= Time.deltaTime;
+
+        ImmunityTimer -= Time.deltaTime;
 
         if (TriggerHandler.IsTriggered == true)
         {
@@ -62,16 +65,25 @@ public class Crocadile : MonoBehaviour
         {
             IsColliding = true;
         }
-        if (collision.gameObject.tag == "Player Attack")
+        if (collision.gameObject.tag == "Player Attack" && ImmunityTimer <= 0)
         {
+            AudioHandler.HitAudio();
             Health -= 1;
-            AudioHandler.HitAudio();
+            ImmunityTimer = 0.4f;
         }
-        if (collision.gameObject.tag == "Player HeavyAttack")
+        if (collision.gameObject.tag == "Player HeavyAttack" && ImmunityTimer <= 0)
         {
-            Health -= 2;
             AudioHandler.HitAudio();
+            Health -= 2;
+            ImmunityTimer = 0.4f;
         }
+        if (collision.gameObject.tag == "Whip" && ImmunityTimer <= 0)
+        {
+            AudioHandler.HitAudio();
+            Health -= 1;
+            ImmunityTimer = 0.4f;
+        }
+
         //HANDLES LANDING
         if (collision.gameObject.tag == "Water")
         {

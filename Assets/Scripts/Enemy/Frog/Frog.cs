@@ -23,6 +23,7 @@ public class Frog : MonoBehaviour
     public float JumpTimer;
     public int Health;
     public int MaxHealth;
+    public float ImmunityTimer;
 
     void Start()
     {
@@ -35,6 +36,8 @@ public class Frog : MonoBehaviour
         TriggerBoxTransform.position = SelfTransform.position;
 
         JumpTimer -= Time.deltaTime;
+
+        ImmunityTimer -= Time.deltaTime;
 
         if (IsDirectionRight == true)
         {
@@ -85,15 +88,23 @@ public class Frog : MonoBehaviour
         {
             IsColliding = true;
         }
-        if (collision.gameObject.tag == "Player Attack")
+        if (collision.gameObject.tag == "Player Attack" && ImmunityTimer <= 0)
         {
             AudioHandler.HitAudio();
             Health -= 1;
+            ImmunityTimer = 0.4f;
         }
-        if (collision.gameObject.tag == "Player HeavyAttack")
+        if (collision.gameObject.tag == "Player HeavyAttack" && ImmunityTimer <= 0)
         {
             AudioHandler.HitAudio();
             Health -= 2;
+            ImmunityTimer = 0.4f;
+        }
+        if (collision.gameObject.tag == "Whip" && ImmunityTimer <= 0)
+        {
+            AudioHandler.HitAudio();
+            Health -= 1;
+            ImmunityTimer = 0.4f;
         }
     }
 

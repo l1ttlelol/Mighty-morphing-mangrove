@@ -9,6 +9,7 @@ public class DoorHandler : MonoBehaviour
     public bool DoorStartState;
     public bool DoorCurrentState;
     public AudioHandler AudioHandler;
+    public float ImmunityTimer;
 
     //SETTING THE INITIAL STATE OF THE DOOR
     void Start()
@@ -20,14 +21,16 @@ public class DoorHandler : MonoBehaviour
     void Update()
     {
         Door.SetActive(DoorCurrentState);
+        ImmunityTimer -= Time.deltaTime;
     }
 
     //ACTIVATING THE SWITCH AND ALTERNATING THE DOORS STATE
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player Attack" || collision.gameObject.tag == "Player HeavyAttack")
+        if ((collision.gameObject.tag == "Player Attack" || collision.gameObject.tag == "Player HeavyAttack" || collision.gameObject.tag == "Whip") && ImmunityTimer <= 0)
         {
             AudioHandler.HitAudio();
+            ImmunityTimer = 0.4f;
             if (DoorCurrentState == true) { DoorCurrentState = false; }
             else { DoorCurrentState = true; }
         }

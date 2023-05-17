@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public bool IsGrounded = false;
     public float Friction = 0.95f;
     public int PlayerDirection;
+    public int PlayerDirectionInverse;
 
     //References
     public Transform PlayerTransform;
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         }
         Sprite.eulerAngles = new Vector3(0, 180, 0);
         PlayerDirection = -1;
+        PlayerDirectionInverse = 1;
     }
     
     //HANDLES THE PLAYERS RIGHT MOVEMENT
@@ -57,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         }
         Sprite.eulerAngles = new Vector3(0, 0, 0);
         PlayerDirection = 1;
+        PlayerDirectionInverse = -1;
     }
 
     //HANDLES THE PLAYERS JUMP

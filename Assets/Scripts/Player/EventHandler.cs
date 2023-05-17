@@ -31,6 +31,7 @@ public class EventHandler : MonoBehaviour
     public PlayerAbilityHeavyAttack HeavyAttack;
     public GameObject PlayerAttack;
     public GameObject PlayerHeavyAttack;
+    public GameObject PlayerGrabAttack;
     public Transform AttackCounterWeight;
     public AudioHandler AudioHandler;
     public PlayerManager PlayerManager;
@@ -55,9 +56,19 @@ public class EventHandler : MonoBehaviour
             AttackActiveTimer = 0;
             PlayerAttack.SetActive(false);
             PlayerHeavyAttack.SetActive(false);
-            AttackCounterWeight.eulerAngles = new Vector3(0, 0, 32.902f);
+            PlayerGrabAttack.SetActive(false);
+
+            if(CharacterIndex != 3)
+            {
+                AttackCounterWeight.eulerAngles = new Vector3(0, 0, 32.902f);
+            }
+            else
+            {
+                AttackCounterWeight.eulerAngles = new Vector3(0, 0, 0);
+            }
+            
         }
-        else
+        else if(CharacterIndex != 3)
         {
             if(PlayerMovement.PlayerDirection == -1)
             {
@@ -66,6 +77,31 @@ public class EventHandler : MonoBehaviour
             else
             {
                 AttackCounterWeight.eulerAngles = new Vector3(0, 0, AttackCounterWeight.eulerAngles.z - 7f);
+            }
+        }
+        else
+        {
+            if (CharacterIndex == 3)
+            {
+                if (PlayerMovement.PlayerDirection == -1)
+                {
+                    AttackCounterWeight.eulerAngles = new Vector3(0, 180, 0);
+                }
+                else
+                {
+                    AttackCounterWeight.eulerAngles = new Vector3(0, 0, 0);
+                }
+            }
+            else
+            {
+                if (PlayerMovement.PlayerDirection == -1)
+                {
+                    AttackCounterWeight.eulerAngles = new Vector3(0, 180, AttackCounterWeight.eulerAngles.z - 7f);
+                }
+                else
+                {
+                    AttackCounterWeight.eulerAngles = new Vector3(0, 0, AttackCounterWeight.eulerAngles.z - 7f);
+                }
             }
         }
 
@@ -158,7 +194,7 @@ public class EventHandler : MonoBehaviour
                 if ((Input.GetButton("Attack") || Input.GetButton("Attack 2")) && AttackCooldownTimer == 0)
                 {
                     AudioHandler.AttackAudio();
-                    if (CharacterIndex != 2)
+                    if (CharacterIndex != 2 && CharacterIndex != 3)
                     {
                         PlayerAttack.SetActive(true);
 
@@ -173,12 +209,26 @@ public class EventHandler : MonoBehaviour
                             WeaponSprite.sprite = SwordSprite;
                         }
                     }
-                    else
+                    else if (CharacterIndex == 2)
                     {
                         PlayerHeavyAttack.SetActive(true);
                     }
-                    AttackActiveTimer = 0.4f;
-                    AttackCooldownTimer = 1f;
+                    else
+                    {
+                        PlayerGrabAttack.SetActive(true);
+                        Grab.PlayerAbility_Grab();
+                    }
+                    
+                    if(CharacterIndex != 3)
+                    {
+                        AttackActiveTimer = 0.4f;
+                        AttackCooldownTimer = 1f;
+                    }
+                    else
+                    {
+                        AttackActiveTimer = 0.3f;
+                        AttackCooldownTimer = 1f;
+                    }
                 }
             }
         }

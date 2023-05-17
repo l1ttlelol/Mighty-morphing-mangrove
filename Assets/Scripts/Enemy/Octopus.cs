@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrabEnemy : MonoBehaviour
+public class Octopus : MonoBehaviour
 {
     //References
 
     public BoxCollider2D Hitbox;
-    public TriggerHandler TriggerHandler;
-    public Transform PlayerTransform;
+    public LinearTriggerHandler TriggerHandler;
     public Transform SelfTransform;
-    public Transform WallBoxTransform;
-    public Transform FloorBoxTransform;
+    public Transform TriggerBoxTransform;
+    public Transform DamageBoxTransform;
     public Rigidbody2D EnemyRigidBody;
     public GameObject Self;
     public AudioHandler AudioHandler;
+    public PlayerMovement PlayerMovement;
 
     //Variables
     public bool IsDirectionRight;
+    public float Direction;
     public float Velocity;
     public bool IsColliding;
+    public bool IsHanging;
     public int Health;
     public int MaxHealth;
     public float ImmunityTimer;
@@ -27,36 +29,34 @@ public class CrabEnemy : MonoBehaviour
     void Start()
     {
         Health = MaxHealth;
+        IsHanging = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        FloorBoxTransform.position = SelfTransform.position;
-        WallBoxTransform.position = SelfTransform.position;
+        TriggerBoxTransform.position = SelfTransform.position;
+        DamageBoxTransform.position = SelfTransform.position;
 
         ImmunityTimer -= Time.deltaTime;
 
-        if (IsDirectionRight == true)
+        if (TriggerHandler.IsTriggered == true)
         {
-            SelfTransform.eulerAngles = new Vector3(0, 0, 0);
-            WallBoxTransform.eulerAngles = new Vector3(0, 0, 0);
-            FloorBoxTransform.eulerAngles = new Vector3(0, 0, 0);
-        }
-        else
-        {
-            SelfTransform.eulerAngles = new Vector3(0, 180, 0);
-            WallBoxTransform.eulerAngles = new Vector3(0, 180, 0);
-            FloorBoxTransform.eulerAngles = new Vector3(0, 180, 0);
+
+            if (IsHanging == true)
+            {
+                IsHanging = false;
+                EnemyRigidBody.bodyType = RigidbodyType2D.Dynamic;
+                EnemyRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+                EnemyRigidBody.AddForce(transform.up * 300);
+                AudioHandler.JumpAudio();
+            }
         }
 
-        SelfTransform.Translate(Vector3.right * Velocity * Time.deltaTime);
-
-        if (Health <= 0) 
+        if (Health <= 0)
         {
             Self.SetActive(false);
         }
-
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -82,8 +82,16 @@ public class CrabEnemy : MonoBehaviour
             AudioHandler.HitAudio();
             Health -= 1;
             ImmunityTimer = 0.4f;
+            EnemyRigidBody.bodyType = RigidbodyType2D.Dynamic;
+            EnemyRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+            EnemyRigidBody.AddForce(new Vector2(PlayerMovement.PlayerDirectionInverse * 100, 0));
         }
 
+        //HANDLES LANDING
+        if (collision.gameObject.tag == "Water")
+        {
+            EnemyRigidBody.bodyType = RigidbodyType2D.Static;
+        }
     }
 
     void OnCollisionExit2D(Collision2D collision)
