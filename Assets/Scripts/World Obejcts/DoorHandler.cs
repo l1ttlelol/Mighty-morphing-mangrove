@@ -10,6 +10,9 @@ public class DoorHandler : MonoBehaviour
     public bool DoorCurrentState;
     public AudioHandler AudioHandler;
     public float ImmunityTimer;
+    public SpriteRenderer SwitchSprite;
+    public Sprite SwitchOn;
+    public Sprite SwitchOff;
 
     //SETTING THE INITIAL STATE OF THE DOOR
     void Start()
@@ -21,6 +24,16 @@ public class DoorHandler : MonoBehaviour
     void Update()
     {
         Door.SetActive(DoorCurrentState);
+
+        if(DoorCurrentState == true)
+        {
+            SwitchSprite.sprite = SwitchOn;
+        }
+        else
+        {
+            SwitchSprite.sprite = SwitchOff;
+        }
+
         ImmunityTimer -= Time.deltaTime;
     }
 

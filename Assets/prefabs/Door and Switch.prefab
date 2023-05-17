@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 7347089136706596853}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.03, y: 1.92, z: 0}
-  m_LocalScale: {x: 9.6, y: 19.75, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 5.832912, y: 12, z: 0.60759497}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7347089137105197789}
   m_RootOrder: 0
@@ -72,14 +72,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.33}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.32, y: 0.33}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.22, y: 0.22}
+  m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
 --- !u!212 &7347089136706596852
 SpriteRenderer:
@@ -122,7 +122,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 626b9cddb29049e4cac50cd87b419945, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e1491819cb46f0f4eabc748cd919f564, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -218,7 +218,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.33}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.32, y: 0.33}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -268,7 +268,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17303c9704570eb4fa6003a399b8a7ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -296,6 +296,10 @@ MonoBehaviour:
   DoorStartState: 1
   DoorCurrentState: 0
   AudioHandler: {fileID: 0}
+  ImmunityTimer: 0
+  SwitchSprite: {fileID: 7347089137708283215}
+  SwitchOn: {fileID: 21300000, guid: b0233d69703b1b7428063e2d396ab8bd, type: 3}
+  SwitchOff: {fileID: 21300000, guid: 17303c9704570eb4fa6003a399b8a7ab, type: 3}
 --- !u!50 &4139426162995420972
 Rigidbody2D:
   serializedVersion: 4
