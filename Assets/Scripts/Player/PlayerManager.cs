@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     //References
-    public GameObject[] HealthUI;
+    public SpriteRenderer[] HealthUI;
     public GameObject PlayerCharacter;
     public Transform PlayerTransform;
     public GameObject GameOverMenu;
@@ -21,6 +21,8 @@ public class PlayerManager : MonoBehaviour
     public Vector2 LastHardCheckpoint;
     public float InvulnerabilityTimer;
     public float InvulnerabilityTimerMax;
+    public Sprite ActiveHeart;
+    public Sprite DeactiveHeart;
 
     void Start()
     {
@@ -34,27 +36,27 @@ public class PlayerManager : MonoBehaviour
 
         if (CurrentHealth == 3)
         {
-            HealthUI[0].SetActive(true);
-            HealthUI[1].SetActive(true);
-            HealthUI[2].SetActive(true);
+            HealthUI[0].sprite = ActiveHeart;
+            HealthUI[1].sprite = ActiveHeart;
+            HealthUI[2].sprite = ActiveHeart;
         }
         else if (CurrentHealth == 2)
         {
-            HealthUI[0].SetActive(true);
-            HealthUI[1].SetActive(true);
-            HealthUI[2].SetActive(false);
+            HealthUI[0].sprite = ActiveHeart;
+            HealthUI[1].sprite = ActiveHeart;
+            HealthUI[2].sprite = DeactiveHeart;
         }
         else if (CurrentHealth == 1)
         {
-            HealthUI[0].SetActive(true);
-            HealthUI[1].SetActive(false);
-            HealthUI[2].SetActive(false);
+            HealthUI[0].sprite = ActiveHeart;
+            HealthUI[1].sprite = DeactiveHeart;
+            HealthUI[2].sprite = DeactiveHeart;
         }
         else 
         {
-            HealthUI[0].SetActive(false);
-            HealthUI[1].SetActive(false);
-            HealthUI[2].SetActive(false);
+            HealthUI[0].sprite = DeactiveHeart;
+            HealthUI[1].sprite = DeactiveHeart;
+            HealthUI[2].sprite = DeactiveHeart;
             GameOver(); 
         }
     }

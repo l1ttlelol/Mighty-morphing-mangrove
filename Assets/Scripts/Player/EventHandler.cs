@@ -37,6 +37,15 @@ public class EventHandler : MonoBehaviour
     public PlayerManager PlayerManager;
     public PlayerMovement PlayerMovement;
 
+
+    public SpriteRenderer CharacterSelectSprite;
+    public GameObject CharacterSelect;
+    public Sprite CharacterSelectSprite1;
+    public Sprite CharacterSelectSprite2;
+    public Sprite CharacterSelectSprite3;
+    public Sprite CharacterSelectSprite4;
+
+
     void FixedUpdate()
     {
         //sets the data for the active character
@@ -129,21 +138,27 @@ public class EventHandler : MonoBehaviour
                 //UP
                 //print("Character Select Up");
                 IsCharacterSelecting = true;
-                CharacterIndex = 0;
+                CharacterIndex = 2;
+                CharacterSelect.SetActive(true);
+                CharacterSelectSprite.sprite = CharacterSelectSprite3;
             }
             else if ((Input.GetButton("Character Select") || Input.GetButton("Character Select 2")) && Input.GetButton("Character Select Right"))
             {
                 //RIGHT
                 //print("Character Select Right");
                 IsCharacterSelecting = true;
-                CharacterIndex = 1;
+                CharacterIndex = 0;
+                CharacterSelect.SetActive(true);
+                CharacterSelectSprite.sprite = CharacterSelectSprite1;
             }
             else if ((Input.GetButton("Character Select") || Input.GetButton("Character Select 2")) && Input.GetButton("Character Select Down"))
             {
                 //DOWN
                 //print("Character Select Down");
                 IsCharacterSelecting = true;
-                CharacterIndex = 2;
+                CharacterIndex = 1;
+                CharacterSelect.SetActive(true);
+                CharacterSelectSprite.sprite = CharacterSelectSprite2;
             }
             else if ((Input.GetButton("Character Select") || Input.GetButton("Character Select 2")) && Input.GetButton("Character Select Left"))
             {
@@ -151,17 +166,21 @@ public class EventHandler : MonoBehaviour
                 //print("Character Select Left");
                 IsCharacterSelecting = true;
                 CharacterIndex = 3;
+                CharacterSelect.SetActive(true);
+                CharacterSelectSprite.sprite = CharacterSelectSprite4;
             }
             else if (Input.GetButton("Character Select") || Input.GetButton("Character Select 2"))
             {
                 //NONE
                 //print("Character Select Menu");
                 IsCharacterSelecting = true;
+                CharacterSelect.SetActive(true);
             }
             else
             {
                 //DESELECTING
                 IsCharacterSelecting = false;
+                CharacterSelect.SetActive(false);
             }
 
             //============================================================
