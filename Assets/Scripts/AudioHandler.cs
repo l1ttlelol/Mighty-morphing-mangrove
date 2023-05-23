@@ -13,6 +13,9 @@ public class AudioHandler : MonoBehaviour
     public AudioSource CrocadileAudioSource;
     public AudioSource SplashAudioSource;
 
+    public AudioSource JungleMusic;
+    public AudioSource ChaseMusic;
+
     public void JumpAudio()
     {
         JumpAudioSource.Play();
@@ -52,6 +55,12 @@ public class AudioHandler : MonoBehaviour
     public void SplashAudio()
     {
         SplashAudioSource.Play();
+    }
+
+    public void ChaseAudio()
+    {
+        JungleMusic.Stop();
+        ChaseMusic.Play();
     }
 
 }
