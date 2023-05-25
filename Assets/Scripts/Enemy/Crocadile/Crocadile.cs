@@ -15,6 +15,10 @@ public class Crocadile : MonoBehaviour
     public GameObject Self;
     public AudioHandler AudioHandler;
 
+    public Sprite Sprite1;
+    public Sprite Sprite2;
+    public SpriteRenderer SpriteRenderer;
+
     //Variables
     public bool IsDirectionRight;
     public float Direction;
@@ -24,6 +28,8 @@ public class Crocadile : MonoBehaviour
     public int Health;
     public int MaxHealth;
     public float ImmunityTimer;
+    public float SpriteTimer;
+
 
     void Start()
     {
@@ -39,6 +45,16 @@ public class Crocadile : MonoBehaviour
         JumpTimer -= Time.deltaTime;
 
         ImmunityTimer -= Time.deltaTime;
+        
+        SpriteTimer -= Time.deltaTime;
+        if(SpriteTimer < 0)
+        {
+            SpriteRenderer.sprite = Sprite1;
+        }
+        else
+        {
+            SpriteRenderer.sprite = Sprite2;
+        }
 
         if (TriggerHandler.IsTriggered == true)
         {
@@ -46,6 +62,7 @@ public class Crocadile : MonoBehaviour
             if (JumpTimer <= 0)
             {
                 JumpTimer = 3f;
+                SpriteTimer = 1f;
                 EnemyRigidBody.bodyType = RigidbodyType2D.Dynamic;
                 EnemyRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
                 EnemyRigidBody.AddForce(transform.up * 600);

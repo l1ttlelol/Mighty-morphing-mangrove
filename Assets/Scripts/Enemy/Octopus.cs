@@ -16,6 +16,10 @@ public class Octopus : MonoBehaviour
     public AudioHandler AudioHandler;
     public PlayerMovement PlayerMovement;
 
+    public Sprite Sprite1;
+    public Sprite Sprite2;
+    public SpriteRenderer SpriteRenderer;
+
     //Variables
     public bool IsDirectionRight;
     public float Direction;
@@ -30,6 +34,7 @@ public class Octopus : MonoBehaviour
     {
         Health = MaxHealth;
         IsHanging = true;
+        SpriteRenderer.sprite = Sprite1;
     }
 
     // Update is called once per frame
@@ -50,6 +55,8 @@ public class Octopus : MonoBehaviour
                 EnemyRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 EnemyRigidBody.AddForce(transform.up * 300);
                 AudioHandler.JumpAudio();
+                SpriteRenderer.sprite = Sprite2;
+                SpriteRenderer.flipY = true;
             }
         }
 
@@ -88,9 +95,10 @@ public class Octopus : MonoBehaviour
         }
 
         //HANDLES LANDING
-        if (collision.gameObject.tag == "Water")
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Player Attack" && collision.gameObject.tag != "Player HeavyAttack" && collision.gameObject.tag != "Whip")
         {
-            EnemyRigidBody.bodyType = RigidbodyType2D.Static;
+            Self.SetActive(false);
+            //SpriteRenderer.flipY = true;
         }
     }
 

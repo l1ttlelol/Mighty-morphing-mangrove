@@ -16,6 +16,11 @@ public class CrabEnemy : MonoBehaviour
     public GameObject Self;
     public AudioHandler AudioHandler;
 
+    public Sprite Sprite1;
+    public Sprite Sprite2;
+    public bool IsSprite1;
+    public SpriteRenderer SpriteRenderer;
+
     //Variables
     public bool IsDirectionRight;
     public float Velocity;
@@ -23,6 +28,7 @@ public class CrabEnemy : MonoBehaviour
     public int Health;
     public int MaxHealth;
     public float ImmunityTimer;
+    public float SpriteTimer;
 
     void Start()
     {
@@ -36,6 +42,23 @@ public class CrabEnemy : MonoBehaviour
         WallBoxTransform.position = SelfTransform.position;
 
         ImmunityTimer -= Time.deltaTime;
+
+        SpriteTimer -= Time.deltaTime;
+        if(SpriteTimer < 0)
+        {
+            if(IsSprite1 == true)
+            {
+                SpriteRenderer.flipX = false;
+                IsSprite1 = false;
+                SpriteTimer = 0.2f;
+            }
+            else
+            {
+                SpriteRenderer.flipX = true;
+                IsSprite1 = true;
+                SpriteTimer = 0.2f;
+            }
+        }
 
         if (IsDirectionRight == true)
         {

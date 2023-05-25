@@ -15,6 +15,10 @@ public class Frog : MonoBehaviour
     public GameObject Self;
     public AudioHandler AudioHandler;
 
+    public Sprite Sprite1;
+    public Sprite Sprite2;
+    public SpriteRenderer SpriteRenderer;
+
     //Variables
     public bool IsDirectionRight;
     public float Direction;
@@ -28,6 +32,7 @@ public class Frog : MonoBehaviour
     void Start()
     {
         Health = MaxHealth;
+        SpriteRenderer.sprite = Sprite2;
     }
 
     // Update is called once per frame
@@ -61,7 +66,12 @@ public class Frog : MonoBehaviour
                     AudioHandler.FrogAudio();
                     EnemyRigidBody.AddForce(transform.up * 300);
                     EnemyRigidBody.AddForce(transform.right * 200);
+                    SpriteRenderer.sprite = Sprite1;
                 }
+                /*else
+                {
+                    SpriteRenderer.sprite = Sprite2;
+                }*/
             }
             else if (Direction < -0.2f && IsColliding == false)
             {
@@ -72,7 +82,12 @@ public class Frog : MonoBehaviour
                     AudioHandler.FrogAudio();
                     EnemyRigidBody.AddForce(transform.up * 300);
                     EnemyRigidBody.AddForce(transform.right * 200);
+                    SpriteRenderer.sprite = Sprite1;
                 }
+                /*else
+                {
+                    SpriteRenderer.sprite = Sprite2;
+                }*/
             }
         }
 
@@ -105,6 +120,11 @@ public class Frog : MonoBehaviour
             AudioHandler.HitAudio();
             Health -= 1;
             ImmunityTimer = 0.4f;
+        }
+
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Player Attack" && collision.gameObject.tag != "Player HeavyAttack" && collision.gameObject.tag != "Whip")
+        {
+            SpriteRenderer.sprite = Sprite2;
         }
     }
 
