@@ -323,7 +323,7 @@ public class EventHandler : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Damage source")
+        if (collision.gameObject.tag == "Damage source" && Dash.DashActiveTimer <= -0.2f)
         {
             PlayerManager.RecoverableDamage();
             AudioHandler.HitAudio();

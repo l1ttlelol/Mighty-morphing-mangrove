@@ -11,15 +11,15 @@ public class PlayerAbilityDash : MonoBehaviour
     void Update()
     {
         DashActiveTimer -= Time.deltaTime;
-        if (DashActiveTimer <= 0) { DashActiveTimer = 0; } else                    //Moving the player via dash if the dash timer is positive
+        if (DashActiveTimer > 0)                    //Moving the player via dash if the dash timer is positive
         {
-            PlayerMovement.PlayerTransform.Translate(new Vector2(PlayerMovement.PlayerDirection * 0.03f, 0));
+            PlayerMovement.PlayerTransform.Translate(new Vector2(PlayerMovement.PlayerDirection * 0.05f, 0));
         }
     }
 
     //Applying a timer for how long the current dash is
     public void PlayerAbility_Dash()
     {
-        DashActiveTimer = 0.4f;
+        DashActiveTimer = 0.3f;
     }
 }

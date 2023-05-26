@@ -34,29 +34,53 @@ public class PlayerManager : MonoBehaviour
     {
         InvulnerabilityTimer -= Time.deltaTime;
 
-        if (CurrentHealth == 3)
+        if (CurrentHealth == 5)
         {
             HealthUI[0].sprite = ActiveHeart;
             HealthUI[1].sprite = ActiveHeart;
             HealthUI[2].sprite = ActiveHeart;
+            HealthUI[3].sprite = ActiveHeart;
+            HealthUI[4].sprite = ActiveHeart;
+        }
+        else if (CurrentHealth == 4)
+        {
+            HealthUI[0].sprite = ActiveHeart;
+            HealthUI[1].sprite = ActiveHeart;
+            HealthUI[2].sprite = ActiveHeart;
+            HealthUI[3].sprite = ActiveHeart;
+            HealthUI[4].sprite = DeactiveHeart;
+        }
+        else if (CurrentHealth == 3)
+        {
+            HealthUI[0].sprite = ActiveHeart;
+            HealthUI[1].sprite = ActiveHeart;
+            HealthUI[2].sprite = ActiveHeart;
+            HealthUI[3].sprite = DeactiveHeart;
+            HealthUI[4].sprite = DeactiveHeart;
         }
         else if (CurrentHealth == 2)
         {
             HealthUI[0].sprite = ActiveHeart;
             HealthUI[1].sprite = ActiveHeart;
             HealthUI[2].sprite = DeactiveHeart;
+            HealthUI[3].sprite = DeactiveHeart;
+            HealthUI[4].sprite = DeactiveHeart;
         }
         else if (CurrentHealth == 1)
         {
             HealthUI[0].sprite = ActiveHeart;
             HealthUI[1].sprite = DeactiveHeart;
             HealthUI[2].sprite = DeactiveHeart;
+            HealthUI[3].sprite = DeactiveHeart;
+            HealthUI[4].sprite = DeactiveHeart;
         }
         else 
         {
             HealthUI[0].sprite = DeactiveHeart;
             HealthUI[1].sprite = DeactiveHeart;
             HealthUI[2].sprite = DeactiveHeart;
+            HealthUI[3].sprite = DeactiveHeart;
+            HealthUI[4].sprite = DeactiveHeart;
             GameOver(); 
         }
     }
@@ -116,7 +140,7 @@ public class PlayerManager : MonoBehaviour
 
     public void RetryStartButton()
     {
-        CheckpointData.HardCheckpointLocation = new Vector2(-7.06f, 2.49f);
+        CheckpointData.HardCheckpointLocation = new Vector2(-12.65f, 2.49f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
     }

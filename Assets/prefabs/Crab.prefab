@@ -156,7 +156,7 @@ MonoBehaviour:
   Self: {fileID: 2884123951327921122}
   AudioHandler: {fileID: 0}
   Sprite1: {fileID: 21300000, guid: aac9b7094e6fdf14e896faed1339c8a3, type: 3}
-  Sprite2: {fileID: 21300000, guid: aac9b7094e6fdf14e896faed1339c8a3, type: 3}
+  Sprite2: {fileID: 21300000, guid: a9fbe868b42044c43914f655b2f1a6b1, type: 3}
   IsSprite1: 0
   SpriteRenderer: {fileID: 2884123950189050361}
   IsDirectionRight: 0

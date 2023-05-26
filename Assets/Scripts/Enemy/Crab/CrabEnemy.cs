@@ -48,13 +48,15 @@ public class CrabEnemy : MonoBehaviour
         {
             if(IsSprite1 == true)
             {
-                SpriteRenderer.flipX = false;
+                //SpriteRenderer.flipX = false;
+                SpriteRenderer.sprite = Sprite2;
                 IsSprite1 = false;
                 SpriteTimer = 0.2f;
             }
             else
             {
-                SpriteRenderer.flipX = true;
+                //SpriteRenderer.flipX = true;
+                SpriteRenderer.sprite = Sprite1;
                 IsSprite1 = true;
                 SpriteTimer = 0.2f;
             }
